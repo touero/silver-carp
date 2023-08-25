@@ -1,7 +1,7 @@
 <h1 align="center">opsariichthys-bidens</h1>
 
 <p align="center">
-<img src="https://img.shields.io/badge/matlab-green" alt=""> <img src="https://img.shields.io/badge/license_-GPL3.0-green" alt=""> <img 
+<img src="https://img.shields.io/badge/matlab-green" alt=""> <img src="https://img.shields.io/badge/license_-GPL3.0-green" alt="">
 </p>
 
 ## Repository Introduction
@@ -14,30 +14,30 @@ There are many restaurants of all sizes in the city, and each restaurant has a p
 
 ## Model ideas
 
-When an individual is a collaborator and regardless of whether they undergo inspection or not, the collaborator has already done a good job of hygiene and will not be punished. At this point, the profit that the individual collaborator obtains from the whole is as follows:
-$$
-D(i) = \frac{{NC*r*c}}{{NCD}}
-$$
+When an individual is a collaborator and regardless of whether they undergo inspection or not, the collaborator has already done a good job of hygiene and will not be punished. At this point, the profit that the individual collaborator obtains from the whole is as follows:  
+<p align="center">
+    <img src=.img/img1_.png alt="">
+</p>
 
 When an individual is a betrayer and the probability of being tested meets the following criteria.
-$$
-inspectionP > 0.5
-$$
+<p align="center">
+    <img src=.img/img2_.png alt="">
+</p>
 
 The betrayer has not yet done a good job in hygiene, and at this point, the benefits of the betrayer are
-$$
-D(i) = D(i) - penaltyAmount
-$$
+<p align="center">
+    <img src=.img/img3_.png alt="">
+</p>
 
 Rewards are awarded when the group cooperation rate is less than 0.5. Finally, calculate the total income of the individual
-$$
-E\left( i \right) = totalpay - A\left( i \right)*NCD*c + A\left( i \right)*individualRewards
-$$
+<p align="center">
+    <img src=.img/img4_.png alt="">
+</p>
 
 Plus benefits from other groups
-$$
-individualRewards = individualRewards + reward\left( {Node\_neighbor\left( {i,j} \right)} \right)
-$$
+<p align="center">
+    <img src=.img/img5_.png alt="">
+</p>
 ### Parameter Description
 - c: Cooperation costs for collaborators
 - r: Input-output ratio
@@ -61,7 +61,7 @@ $$
 This project uses [Matlab](https://www.mathworks.com/products/matlab.html) [Git](https://git-scm.com/). Go check them out if you don't have them locally installed.
 
 ```shell
-$ git clone 
+$ git clone https://github.com/weiensong/opsariichthys-bidens.git
 ```
 
 
@@ -82,7 +82,7 @@ $ git clone
 ## Contributing
 
 
-Feel free to dive in! [Open an issue]() or submit PRs.
+Feel free to dive in! [Open an issue](https://github.com/weiensong/opsariichthys-bidens/issues) or submit PRs.
 
 
 
@@ -94,5 +94,5 @@ This project exists thanks to all the people who contribute.
 
 ## License
 
-[MIT]() © weiensong
+[MIT](https://github.com/weiensong/opsariichthys-bidens/blob/master/LICENSE) © weiensong
 
