@@ -38,8 +38,9 @@ Plus benefits from other groups
 <p align="center">
     <img src=.img/img5_.png alt="">
 </p>
-### Parameter Description
-- c: Cooperation costs for collaborators
+
+### Parameter Description  
+- c: Cooperation costs for collaborators  
 - r: Input-output ratio
 - k: Rationality level
 - penaltyAmount:Fine
