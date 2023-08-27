@@ -58,6 +58,11 @@ Plus benefits from other groups
 
 <table>
     <tr>
+        <td>diffNetwork</td>
+        <td>penaltyAmount</td>
+        <td>rewardAmount</td>
+    </tr>
+    <tr>
         <td><img src=.img/BAnetwork.png alt=""></td>
         <td><img src=.img/BAnetworkpenaltyAmount.png alt=""></td>
         <td><img src=.img/BAnetworkrewardAmount.png alt=""></td>
