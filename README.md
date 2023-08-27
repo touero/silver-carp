@@ -56,6 +56,29 @@ Plus benefits from other groups
 - tongji: stores the proportion of collaborators at each moment
 - NC: represents the number of co authors in group i
 
+<table>
+    <tr>
+        <td><img src=.img/BAnetwork.png alt=""></td>
+        <td><img src=.img/BAnetworkpenaltyAmount.png alt=""></td>
+        <td><img src=.img/BAnetworkrewardAmount.png alt=""></td>
+    </tr>
+    <tr>
+        <td><img src=.img/randomnetwork.png alt=""></td>
+        <td><img src=.img/randomnetworkpenaltyAmount.png alt=""></td>
+        <td><img src=.img/randomnetworkrewardAmount.png alt=""></td>
+    </tr>
+    <tr>
+        <td><img src=.img/rulenetwork.png alt=""></td>
+        <td><img src=.img/rulenetworkpenaltyAmount.png alt=""></td>
+        <td><img src=.img/rulenetworkrewardAmount.png alt=""></td>
+    </tr>
+    <tr>
+        <td><img src=.img/smallworldnetwork.png alt=""></td>
+        <td><img src=.img/smallworldnetworkpenaltyAmount.png alt=""></td>
+        <td><img src=.img/smallworldnetworkrewardAmount=7.png alt=""></td>
+    </tr>
+    
+</table>
 
 ## Install
 
