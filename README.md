@@ -41,22 +41,22 @@ Plus benefits from other groups
     <img src=.img/img5_.png alt="">
 </p>
 
-### Parameter Description  
-- c: Cooperation costs for collaborators  
-- r: Input-output ratio
-- k: Rationality level
-- penaltyAmount:Fine
-- rewardAmount: Reward
-- reward: group reward
-- Cooperation_rate: Group combination work rate
-- M1: Number of rows
-- M2: Number of columns
-- N: Number of game rounds
-- A: Denotes a collaborator or betrayer
-- D: Benefits of each individual in the group
-- E: Total income per individual
-- tongji: stores the proportion of collaborators at each moment
-- NC: represents the number of co authors in group i
+> Parameter Description  
+>> c: Cooperation costs for collaborators  
+>> r: Input-output ratio  
+>> k: Rationality level  
+>> penaltyAmount:Fine  
+>> rewardAmount: Reward  
+>> reward: group reward  
+>> Cooperation_rate: Group combination work rate  
+>> M1: Number of rows  
+>> M2: Number of columns  
+>> N: Number of game rounds  
+>> A: Denotes a collaborator or betrayer  
+>> D: Benefits of each individual in the group  
+>> E: Total income per individual  
+>> tongji: stores the proportion of collaborators at each moment  
+>> NC: represents the number of co authors in group i  
 
 <table>
     <tr>
