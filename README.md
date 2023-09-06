@@ -8,7 +8,7 @@
 
 Understand the game model of public goods, the evolution and dissemination of cooperation, and the impact of rewards and punishments on cooperation evolution under random networks, and use Monte Carlo simulation analysis to achieve mechanism modeling.  
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;了解公共产品的博弈模型、合作的演变和传播、随机网络下奖励惩罚对合作演化影响,并使用蒙特卡罗模拟分析来实现机制建模。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;了解公共产品的博弈模型、合作的演变和传播、随机网络下奖励惩罚对合作演化影响，并使用蒙特卡罗模拟分析来实现机制建模。  
 
 💕 If it's helpful to you or you clone it, please star it. This is maximum encouragement for open-source contributors。 💕  
   
