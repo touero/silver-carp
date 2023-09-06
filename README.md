@@ -6,7 +6,9 @@
 
 ## Repository Introduction
 
-Understand the game model of public goods, understand the evolution and propagation of cooperation, and use Monte Carlo simulation analysis to achieve mechanism modeling.
+Understand the game model of public goods, understand the evolution and propagation of cooperation, and use Monte Carlo simulation analysis to achieve mechanism modeling.  
+
+💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
 ## Background Introduction
 
