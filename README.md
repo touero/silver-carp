@@ -4,6 +4,10 @@
 <img src="https://img.shields.io/badge/matlab-green" alt=""> <img src="https://img.shields.io/badge/license_-GPL3.0-green" alt="">
 </p>
 
+<p align="center">
+    <img src=.img/silver-carp.png height="200" width="200" alt="">
+</p>
+
 ## Repository Introduction 仓库介绍
 
 Understand the game model of public goods, the evolution and dissemination of cooperation, and the impact of rewards and punishments on cooperation evolution under random networks, and use Monte Carlo simulation analysis to achieve mechanism modeling.  
