@@ -84,7 +84,7 @@ Plus benefits from other groups
 
 <table>
     <tr>
-        <td>diffNetwork</td>
+        <td>diffNetwork default</td>
         <td>penaltyAmount</td>
         <td>rewardAmount</td>
     </tr>
