@@ -24,33 +24,35 @@ There are many restaurants of all sizes in the city, and each restaurant has a p
 ## Model Ideas
 When an individual is a collaborator and regardless of whether they undergo inspection or not, the collaborator has already done a good job of hygiene and will not be punished. At this point, the profit that the individual collaborator obtains from the whole is as follows:  
 
-<p align="center">
-    <img src=.img/img1_.png alt="">
-</p>
+$$
+D_{(i)} = \frac{NC \cdot r \cdot c}{NCD}
+$$
 
-When an individual is a betrayer and the probability of being tested meets the following criteria.  
+When an individual is a betrayer and the probability of being tested meets the following criteria. 
 
-<p align="center">
-    <img src=.img/img2_.png alt="">
-</p>
+$$
+inspectionP > 0.5
+$$
+
 
 The betrayer has not yet done a good job in hygiene, and at this point, the benefits of the betrayer are:  
 
-<p align="center">
-    <img src=.img/img3_.png alt="">
-</p>
+$$
+D_{(i)} = D_{(i)} - penaltyAmount
+$$
 
 Rewards are awarded when the group cooperation rate is less than 0.5. Finally, calculate the total income of the individual:  
 
-<p align="center">
-    <img src=.img/img4_.png alt="">
-</p>
+$$
+E_{(i)} = totalpay - A_{(i)} \cdot NCD \cdot c + A_{(i)} \cdot individualRewards
+$$
 
 Plus benefits from other groups  
 
-<p align="center">
-    <img src=.img/img5_.png alt="">
-</p>
+$$
+individualRewards = individualRewards + reward(Node\\_neighbor(i,j))
+$$
+
 
 > Parameter Description
 >> c: Cooperation costs for collaborators  
