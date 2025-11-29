@@ -41,6 +41,7 @@ $$
 $$
 D_{(i)} = D_{(i)} - penaltyAmount
 $$
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当群体合作率小于0.5时就获得奖励。最后计算个体的全部收益:
 
 $$
