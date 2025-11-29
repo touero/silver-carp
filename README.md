@@ -1,7 +1,7 @@
 <h1 align="center">silver-carp</h1>
 
 <p align="center">
-    <a href="https://github.com/touero/silver-carp/blob/master/README.md">English</a>
+    <a href="https://github.com/touero/silver-carp/blob/master/README.md">[English]</a>
     <a href="https://github.com/touero/silver-carp/blob/master/README_zh.md">中文</a>
 </p>
 
@@ -54,26 +54,27 @@ individualRewards = individualRewards + reward(Node\\_neighbor(i,j))
 $$
 
 
-> Parameter Description
->> c: Cooperation costs for collaborators  
->> r: Input-output ratio   
->> k: Rationality level  
->> penaltyAmount:Fine  
->> rewardAmount: Reward  
->> reward: group reward  
->> Cooperation_rate: Group combination work rate     
->> M1: Number of rows  
->> M2: Number of columns  
->> N: Number of game rounds  
->> A: Denotes a collaborator or betrayer  
->> D: Benefits of each individual in the group  
->> E: Total income per individual  
->> tongji: stores the proportion of collaborators at each moment  
->> NC: represents the number of co authors in group i  
->> NCD：Number of individuals in group i  
->> totalpay：Represented as the total return of individual i playing games in multiple groups  
->> individualRewards：All rewards received by individuals  
-
+Parameter Description:  
+```
+c:                  Cooperation costs for collaborators
+r:                  Input-output ratio
+k:                  Rationality level
+penaltyAmount:      Fine
+rewardAmount:       Reward
+reward:             group reward
+Cooperation_rate:   Group combination work rate
+M1:                 Number of rows
+M2:                 Number of columns
+N:                  Number of game rounds
+A:                  Denotes a collaborator or betrayer
+D:                  Benefits of each individual in the group
+E:                  Total income per individual
+tongji:             stores the proportion of collaborators at each moment
+NC:                 represents the number of co authors in group i
+NCD:                Number of individuals in group i
+totalpay:           Represented as the total return of individual i playing games in multiple groups
+individualRewards:  All rewards received by individuals
+```
 
 <table>
     <tr>
