@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://github.com/touero/silver-carp/blob/master/README.md">English</a>
-    <a href="https://github.com/touero/silver-carp/blob/master/README_zh.md">中文</a>
+    <a href="https://github.com/touero/silver-carp/blob/master/README_zh.md">[中文]</a>
 </p>
 
 <p align="center">
@@ -25,47 +25,57 @@
 ## 模型思路
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当个体为合作者时，且无论是否接受检查，合作者则已经做好了卫生，不会受到处罚，此时个体合作者在全体中获得的收益：  
-<p align="center">
-    <img src=.img/img1_.png alt="">
-</p>
 
+$$
+D_{(i)} = \frac{NC \cdot r \cdot c}{NCD}
+$$
   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当个体为背叛者时，且接受检查的概率：
-<p align="center">
-    <img src=.img/img2_.png alt="">
-</p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;背叛者尚未做好卫生，此时背叛者的收益:
-<p align="center">
-    <img src=.img/img3_.png alt="">
-</p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当群体合作率小于0.5时就获得奖励。最后计算个体的全部收益:
-<p align="center">
-    <img src=.img/img4_.png alt="">
-</p>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加上其他群体获得的收益:
-<p align="center">
-    <img src=.img/img5_.png alt="">
-</p>
 
-> 参数描述
->> c: 合作者的合作成本  
->> r: 投入产出比  
->> k: 理性程度  
->> penaltyAmount: 罚款  
->> rewardAmount: 奖励  
->> reward: 群体奖励  
->> Cooperation_rate: 群组合作率  
->> M1: 行数  
->> M2: 列数  
->> N: 博弈轮数  
->> A: 表示合作或背叛者  
->> D: 每个个体在群组中的收益  
->> E: 每个个体的总收益  
->> tongji: 存放着每个时刻的合作者比例  
->> NC: 表示群体i中合作者的个数  
->> NCD：群体i中的个体数  
->> totalpay：表示为个体i在多个群体中博弈的总收益  
->> individualRewards：个体所获得的全部奖励  
+$$
+inspectionP > 0.5
+$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;背叛者尚未做好卫生，此时背叛者的收益:
+
+$$
+D_{(i)} = D_{(i)} - penaltyAmount
+$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当群体合作率小于0.5时就获得奖励。最后计算个体的全部收益:
+
+$$
+E_{(i)} = totalpay - A_{(i)} \cdot NCD \cdot c + A_{(i)} \cdot individualRewards
+$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加上其他群体获得的收益:
+
+$$
+individualRewards = individualRewards + reward(Node\\_neighbor(i,j))
+$$
+
+参数描述
+```
+c:                  合作者的合作成本
+r:                  投入产出比
+k:                  理性程度
+penaltyAmount:      罚款
+rewardAmount:       奖励
+reward:             群体奖励
+Cooperation_rate:   群组合作率
+M1:                 行数
+M2:                 列数
+N:                  博弈轮数
+A:                  表示合作或背叛者
+D:                  每个个体在群组中的收益
+E:                  每个个体的总收益
+tongji:             存放着每个时刻的合作者比例
+NC:                 表示群体i中合作者的个数
+NCD:                群体i中的个体数
+totalpay:           表示为个体i在多个群体中博弈的总收益
+individualRewards:  个体所获得的全部奖励
+```
+
 
 
 <table>
@@ -134,5 +144,4 @@ $ git clone https://github.com/touero/silver-carp.git
 
 ## 许可
 [GNU General Public License v3.0](https://github.com/touero/silver-carp/blob/master/LICENSE.txt)
-
 
