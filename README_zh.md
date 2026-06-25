@@ -80,90 +80,128 @@ individualRewards:  个体所获得的全部奖励
 
 <table>
     <tr>
-        <td>默认</td>
-        <td>惩罚</td>
-        <td>奖励</td>
+        <th>网络类型</th>
+        <th>默认参数<br>(penalty=1, reward=7)</th>
+        <th>增大惩罚<br>(penalty=3, reward=7)</th>
+        <th>增大奖励<br>(penalty=1, reward=12)</th>
     </tr>
     <tr>
-        <td><img src=.img/BAnetwork.png alt=""></td>
-        <td><img src=.img/BAnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/BAnetworkrewardAmount.png alt=""></td>
+        <td align="center">BA 无标度网络</td>
+        <td><img src=.img/BAnetwork.png width="280" alt=""></td>
+        <td><img src=.img/BAnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/BAnetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/randomnetwork.png alt=""></td>
-        <td><img src=.img/randomnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/randomnetworkrewardAmount.png alt=""></td>
+        <td align="center">随机网络</td>
+        <td><img src=.img/randomnetwork.png width="280" alt=""></td>
+        <td><img src=.img/randomnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/randomnetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/rulenetwork.png alt=""></td>
-        <td><img src=.img/rulenetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/rulenetworkrewardAmount.png alt=""></td>
+        <td align="center">规则网格网络</td>
+        <td><img src=.img/rulenetwork.png width="280" alt=""></td>
+        <td><img src=.img/rulenetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/rulenetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/smallworldnetwork.png alt=""></td>
-        <td><img src=.img/smallworldnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/smallworldnetworkrewardAmount=7.png alt=""></td>
+        <td align="center">小世界网络</td>
+        <td><img src=.img/smallworldnetwork.png width="280" alt=""></td>
+        <td><img src=.img/smallworldnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/smallworldnetworkrewardAmount=7.png width="280" alt=""></td>
     </tr>
-    
 </table>
+
+> 三列分别对比了不同参数下合作比例随时间的演化：**默认参数**作为基线，**增大惩罚**展示提高罚款对背叛行为的抑制效果，**增大奖励**展示提高奖励对合作行为的促进作用。四种网络结构（BA 无标度、随机、规则网格、小世界）从上到下排列，可横向对比网络拓扑对合作演化的影响。
 
 ## 生成结果图
 
-项目中 `.img/` 目录下的 12 张演化曲线图，通过以下步骤逐张生成：
+项目中 `.img/` 目录下的 12 张演化曲线图，按以下步骤生成。**MATLAB 和 GNU Octave 均可执行**，以下分别说明。
+
+> **Octave 用户注意**：Octave 需安装 `statistics` 包以支持 `randi` 函数。在 Octave 中执行：
+> ```octave
+> pkg load statistics
+> ```
 
 ### 1. 生成网络拓扑
 
-在 MATLAB 中运行对应的网络脚本，在工作区创建 `Node_neighbor` 邻接矩阵：
-
-| 脚本 | 网络类型 |
-|------|----------|
-| `scaleFreeNetwork.m` | BA 无标度网络 |
-| `randomNetwork.m` | 随机网络 |
-| `reluNetwork.m` | 规则网格网络 |
-| `smallWorldNetwork.m` | 小世界网络 |
-
-### 2. 运行博弈模拟并保存图片
-
-`goodGame.m` 使用工作区中的 `Node_neighbor` 进行蒙特卡洛模拟，绘制合作比例随时间的演化曲线。
-
-**默认参数图**（表格第一列）：
+在工作区中创建 `Node_neighbor` 邻接矩阵。四种网络对应四个脚本，MATLAB 与 Octave 通用：
 
 ```matlab
-% 以 BA 无标度网络为例
-run('scaleFreeNetwork.m')
-% goodGame.m 中参数保持默认：penaltyAmount=1, rewardAmount=7
-run('goodGame.m')
-saveas(gcf, '.img/BAnetwork.png')
+% 选择一种网络运行（以 BA 无标度网络为例）：
+run('scaleFreeNetwork.m')    % BA 无标度网络
+% run('randomNetwork.m')     % 随机网络
+% run('reluNetwork.m')       % 规则网格网络
+% run('smallWorldNetwork.m') % 小世界网络
 ```
 
-**惩罚影响图**（表格第二列）—— 修改 `goodGame.m` 第 4 行的 `penaltyAmount` 值：
+### 2. 运行博弈模拟
+
+`goodGame.m` 使用工作区中的 `Node_neighbor` 进行蒙特卡洛模拟（默认 3500 轮），绘制合作比例随时间演化曲线。
+
+**MATLAB 用户**：直接 `run` 即可。
+
+**Octave 用户**：`goodGame.m` 兼容 Octave，同样用 `run` 执行。若图形窗口未弹出，在脚本开头加上 `figure;`，或在 Octave 中先执行 `graphics_toolkit('qt')` 切换渲染后端。
+
+### 3. 三组参数对比
+
+修改 `goodGame.m` 顶部的参数，逐次运行并保存图片。以 BA 无标度网络为例：
+
+| 图 | 参数修改 | 保存文件名 |
+|----|----------|------------|
+| 默认基线 | 不改（`penaltyAmount=1, rewardAmount=7`） | `.img/BAnetwork.png` |
+| 增大惩罚 | 第 4 行改为 `penaltyAmount=3` | `.img/BAnetworkpenaltyAmount.png` |
+| 增大奖励 | 第 5 行改为 `rewardAmount=12`（第 4 行恢复为 1） | `.img/BAnetworkrewardAmount.png` |
 
 ```matlab
-% penaltyAmount = 3  （将 goodGame.m 第 4 行改为 penaltyAmount=3）
+% ---- 第一张：默认参数 ----
+run('scaleFreeNetwork.m')     % 生成网络
+% goodGame.m 参数保持默认: penaltyAmount=1, rewardAmount=7
+run('goodGame.m')
+
+% 在图形窗口中手动 File → Save As → .img/BAnetwork.png
+% 或用命令：
+% MATLAB:   saveas(gcf, '.img/BAnetwork.png')
+% Octave:   print('-dpng', '.img/BAnetwork.png')
+
+% ---- 第二张：增大惩罚 ----
+% 将 goodGame.m 第 4 行改为 penaltyAmount=3
 run('goodGame.m')
 saveas(gcf, '.img/BAnetworkpenaltyAmount.png')
-```
 
-**奖励影响图**（表格第三列）—— 修改 `goodGame.m` 第 5 行的 `rewardAmount` 值：
-
-```matlab
-% rewardAmount = 12  （将 goodGame.m 第 5 行改为 rewardAmount=12）
+% ---- 第三张：增大奖励 ----
+% 将 goodGame.m 第 4 行恢复为 1，第 5 行改为 rewardAmount=12
 run('goodGame.m')
 saveas(gcf, '.img/BAnetworkrewardAmount.png')
 ```
 
-### 3. 重复四种网络
-
-对每种网络重复步骤 1-2，共生成 12 张图：
-
-```
-.img/BAnetwork.png                    .img/BAnetworkpenaltyAmount.png                    .img/BAnetworkrewardAmount.png
-.img/randomnetwork.png                .img/randomnetworkpenaltyAmount.png                .img/randomnetworkrewardAmount.png
-.img/rulenetwork.png                  .img/rulenetworkpenaltyAmount.png                  .img/rulenetworkrewardAmount.png
-.img/smallworldnetwork.png            .img/smallworldnetworkpenaltyAmount.png            .img/smallworldnetworkrewardAmount=7.png
+**Octave 保存图片命令**（与 MATLAB 略有不同）：
+```octave
+print('-dpng', '-r120', '.img/BAnetwork.png')   % -r120 设置输出分辨率
 ```
 
-> **注意**：`goodGame.m` 第 85 行的 `'-r'` 控制线条颜色与样式。如需不同颜色对比，手动修改该字符串（如 `'-b'` 蓝色、`'-g'` 绿色、`'--r'` 红色虚线），再配合 `hold on`（第 89 行）在同一图上叠加多条曲线。
+### 4. 重复四种网络
+
+对每种网络重复步骤 1-3，即可生成全部 12 张图：
+
+```
+.img/BAnetwork.png                .img/BAnetworkpenaltyAmount.png                .img/BAnetworkrewardAmount.png
+.img/randomnetwork.png            .img/randomnetworkpenaltyAmount.png            .img/randomnetworkrewardAmount.png
+.img/rulenetwork.png              .img/rulenetworkpenaltyAmount.png              .img/rulenetworkrewardAmount.png
+.img/smallworldnetwork.png        .img/smallworldnetworkpenaltyAmount.png        .img/smallworldnetworkrewardAmount=7.png
+```
+
+### 线条颜色与样式
+
+`goodGame.m` 第 85 行控制绘图的颜色和线型：
+
+```matlab
+plot(1:length(tongji), tongji, '-r', 'LineWidth', 0.5)
+%                                ^^^
+%   '-r' = 红色实线    '-b' = 蓝色实线    '-g' = 绿色实线
+%   '--r' = 红色虚线   '-.b' = 蓝点划线   ':k' = 黑色点线
+```
+
+配合第 89 行的 `hold on`，可在同一图上叠加多条不同颜色的曲线以对比效果。
 
 ## 安装
 

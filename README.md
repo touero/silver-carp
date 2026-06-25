@@ -78,90 +78,128 @@ individualRewards:  All rewards received by individuals
 
 <table>
     <tr>
-        <td>diffNetwork default</td>
-        <td>penaltyAmount</td>
-        <td>rewardAmount</td>
+        <th>Network Type</th>
+        <th>Default<br>(penalty=1, reward=7)</th>
+        <th>Higher Penalty<br>(penalty=3, reward=7)</th>
+        <th>Higher Reward<br>(penalty=1, reward=12)</th>
     </tr>
     <tr>
-        <td><img src=.img/BAnetwork.png alt=""></td>
-        <td><img src=.img/BAnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/BAnetworkrewardAmount.png alt=""></td>
+        <td align="center">BA scale-free</td>
+        <td><img src=.img/BAnetwork.png width="280" alt=""></td>
+        <td><img src=.img/BAnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/BAnetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/randomnetwork.png alt=""></td>
-        <td><img src=.img/randomnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/randomnetworkrewardAmount.png alt=""></td>
+        <td align="center">Random</td>
+        <td><img src=.img/randomnetwork.png width="280" alt=""></td>
+        <td><img src=.img/randomnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/randomnetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/rulenetwork.png alt=""></td>
-        <td><img src=.img/rulenetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/rulenetworkrewardAmount.png alt=""></td>
+        <td align="center">Regular lattice</td>
+        <td><img src=.img/rulenetwork.png width="280" alt=""></td>
+        <td><img src=.img/rulenetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/rulenetworkrewardAmount.png width="280" alt=""></td>
     </tr>
     <tr>
-        <td><img src=.img/smallworldnetwork.png alt=""></td>
-        <td><img src=.img/smallworldnetworkpenaltyAmount.png alt=""></td>
-        <td><img src=.img/smallworldnetworkrewardAmount=7.png alt=""></td>
+        <td align="center">Small-world</td>
+        <td><img src=.img/smallworldnetwork.png width="280" alt=""></td>
+        <td><img src=.img/smallworldnetworkpenaltyAmount.png width="280" alt=""></td>
+        <td><img src=.img/smallworldnetworkrewardAmount=7.png width="280" alt=""></td>
     </tr>
-    
 </table>
+
+> The three columns compare the evolution of the cooperation ratio under different parameters: **default** as baseline, **higher penalty** shows the suppression effect of increased fines on betrayal, and **higher reward** shows the promotion effect of increased rewards on cooperation. The four network structures (BA scale-free, random, regular lattice, small-world) are arranged top to bottom for cross-comparison of how network topology affects cooperation evolution.
 
 ## Generate Result Figures
 
-The 12 evolution curves under `.img/` are generated one by one through the following steps:
+The 12 evolution curves under `.img/` are generated following the steps below. **Both MATLAB and GNU Octave are supported** — see platform-specific notes below.
+
+> **Octave users**: Octave requires the `statistics` package for the `randi` function. Load it first:
+> ```octave
+> pkg load statistics
+> ```
 
 ### 1. Generate Network Topology
 
-Run the corresponding network script in MATLAB to create the `Node_neighbor` adjacency matrix in the workspace:
-
-| Script | Network Type |
-|--------|-------------|
-| `scaleFreeNetwork.m` | BA scale-free network |
-| `randomNetwork.m` | Random network |
-| `reluNetwork.m` | Regular lattice network |
-| `smallWorldNetwork.m` | Small-world network |
-
-### 2. Run Simulation and Save Figures
-
-`goodGame.m` uses the `Node_neighbor` matrix in the workspace to run a Monte Carlo simulation and plot the cooperation ratio over time.
-
-**Default parameters** (first column of the table):
+Run one of the four network scripts to create the `Node_neighbor` adjacency matrix in the workspace. These scripts work identically in MATLAB and Octave:
 
 ```matlab
-% Example with BA scale-free network
-run('scaleFreeNetwork.m')
-% Keep default params in goodGame.m: penaltyAmount=1, rewardAmount=7
-run('goodGame.m')
-saveas(gcf, '.img/BAnetwork.png')
+% Pick one network (example: BA scale-free):
+run('scaleFreeNetwork.m')    % BA scale-free network
+% run('randomNetwork.m')     % Random network
+% run('reluNetwork.m')       % Regular lattice network
+% run('smallWorldNetwork.m') % Small-world network
 ```
 
-**Penalty effect** (second column) — modify the `penaltyAmount` value on line 4 of `goodGame.m`:
+### 2. Run the Game Simulation
+
+`goodGame.m` uses the `Node_neighbor` matrix to run a Monte Carlo simulation (3500 rounds by default) and plots the cooperation ratio over time.
+
+**MATLAB users**: Simply use `run` as shown below.
+
+**Octave users**: `goodGame.m` is compatible with Octave. If the figure window does not appear, add `figure;` at the top of the script, or run `graphics_toolkit('qt')` in Octave first to switch the rendering backend.
+
+### 3. Three Parameter Sets for Comparison
+
+Modify the parameters at the top of `goodGame.m`, then run and save the figure. Example for the BA scale-free network:
+
+| Figure | Parameter Change | Output File |
+|--------|-----------------|-------------|
+| Default baseline | No change (`penaltyAmount=1, rewardAmount=7`) | `.img/BAnetwork.png` |
+| Higher penalty | Change line 4 to `penaltyAmount=3` | `.img/BAnetworkpenaltyAmount.png` |
+| Higher reward | Restore line 4 to 1, change line 5 to `rewardAmount=12` | `.img/BAnetworkrewardAmount.png` |
 
 ```matlab
-% penaltyAmount = 3  (change line 4 of goodGame.m to penaltyAmount=3)
+% ---- 1st figure: default parameters ----
+run('scaleFreeNetwork.m')     % generate network
+% goodGame.m params at default: penaltyAmount=1, rewardAmount=7
+run('goodGame.m')
+
+% In the figure window: File → Save As → .img/BAnetwork.png
+% Or via command:
+% MATLAB:   saveas(gcf, '.img/BAnetwork.png')
+% Octave:   print('-dpng', '.img/BAnetwork.png')
+
+% ---- 2nd figure: higher penalty ----
+% Change goodGame.m line 4 to: penaltyAmount=3
 run('goodGame.m')
 saveas(gcf, '.img/BAnetworkpenaltyAmount.png')
-```
 
-**Reward effect** (third column) — modify the `rewardAmount` value on line 5 of `goodGame.m`:
-
-```matlab
-% rewardAmount = 12  (change line 5 of goodGame.m to rewardAmount=12)
+% ---- 3rd figure: higher reward ----
+% Restore goodGame.m line 4 to 1, change line 5 to: rewardAmount=12
 run('goodGame.m')
 saveas(gcf, '.img/BAnetworkrewardAmount.png')
 ```
 
-### 3. Repeat for All Four Networks
-
-Repeat steps 1-2 for each network type, producing 12 figures in total:
-
-```
-.img/BAnetwork.png                    .img/BAnetworkpenaltyAmount.png                    .img/BAnetworkrewardAmount.png
-.img/randomnetwork.png                .img/randomnetworkpenaltyAmount.png                .img/randomnetworkrewardAmount.png
-.img/rulenetwork.png                  .img/rulenetworkpenaltyAmount.png                  .img/rulenetworkrewardAmount.png
-.img/smallworldnetwork.png            .img/smallworldnetworkpenaltyAmount.png            .img/smallworldnetworkrewardAmount=7.png
+**Octave save command** (slightly different from MATLAB):
+```octave
+print('-dpng', '-r120', '.img/BAnetwork.png')   % -r120 sets output resolution
 ```
 
-> **Note**: The `'-r'` on line 85 of `goodGame.m` controls line color and style. To produce curves with different colors for comparison, manually change this string (e.g., `'-b'` for blue, `'-g'` for green, `'--r'` for red dashed), combined with `hold on` (line 89) to overlay multiple curves on the same figure.
+### 4. Repeat for All Four Networks
+
+Repeat steps 1-3 for each network type to produce all 12 figures:
+
+```
+.img/BAnetwork.png                .img/BAnetworkpenaltyAmount.png                .img/BAnetworkrewardAmount.png
+.img/randomnetwork.png            .img/randomnetworkpenaltyAmount.png            .img/randomnetworkrewardAmount.png
+.img/rulenetwork.png              .img/rulenetworkpenaltyAmount.png              .img/rulenetworkrewardAmount.png
+.img/smallworldnetwork.png        .img/smallworldnetworkpenaltyAmount.png        .img/smallworldnetworkrewardAmount=7.png
+```
+
+### Line Color and Style
+
+Line 85 of `goodGame.m` controls the plot color and line style:
+
+```matlab
+plot(1:length(tongji), tongji, '-r', 'LineWidth', 0.5)
+%                                ^^^
+%   '-r' = red solid     '-b' = blue solid    '-g' = green solid
+%   '--r' = red dashed   '-.b' = blue dash-dot   ':k' = black dotted
+```
+
+Combined with `hold on` on line 89, you can overlay multiple curves with different colors on the same figure for comparison.
 
 ## Install
 
