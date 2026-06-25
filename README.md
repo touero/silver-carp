@@ -105,6 +105,64 @@ individualRewards:  All rewards received by individuals
     
 </table>
 
+## Generate Result Figures
+
+The 12 evolution curves under `.img/` are generated one by one through the following steps:
+
+### 1. Generate Network Topology
+
+Run the corresponding network script in MATLAB to create the `Node_neighbor` adjacency matrix in the workspace:
+
+| Script | Network Type |
+|--------|-------------|
+| `scaleFreeNetwork.m` | BA scale-free network |
+| `randomNetwork.m` | Random network |
+| `reluNetwork.m` | Regular lattice network |
+| `smallWorldNetwork.m` | Small-world network |
+
+### 2. Run Simulation and Save Figures
+
+`goodGame.m` uses the `Node_neighbor` matrix in the workspace to run a Monte Carlo simulation and plot the cooperation ratio over time.
+
+**Default parameters** (first column of the table):
+
+```matlab
+% Example with BA scale-free network
+run('scaleFreeNetwork.m')
+% Keep default params in goodGame.m: penaltyAmount=1, rewardAmount=7
+run('goodGame.m')
+saveas(gcf, '.img/BAnetwork.png')
+```
+
+**Penalty effect** (second column) — modify the `penaltyAmount` value on line 4 of `goodGame.m`:
+
+```matlab
+% penaltyAmount = 3  (change line 4 of goodGame.m to penaltyAmount=3)
+run('goodGame.m')
+saveas(gcf, '.img/BAnetworkpenaltyAmount.png')
+```
+
+**Reward effect** (third column) — modify the `rewardAmount` value on line 5 of `goodGame.m`:
+
+```matlab
+% rewardAmount = 12  (change line 5 of goodGame.m to rewardAmount=12)
+run('goodGame.m')
+saveas(gcf, '.img/BAnetworkrewardAmount.png')
+```
+
+### 3. Repeat for All Four Networks
+
+Repeat steps 1-2 for each network type, producing 12 figures in total:
+
+```
+.img/BAnetwork.png                    .img/BAnetworkpenaltyAmount.png                    .img/BAnetworkrewardAmount.png
+.img/randomnetwork.png                .img/randomnetworkpenaltyAmount.png                .img/randomnetworkrewardAmount.png
+.img/rulenetwork.png                  .img/rulenetworkpenaltyAmount.png                  .img/rulenetworkrewardAmount.png
+.img/smallworldnetwork.png            .img/smallworldnetworkpenaltyAmount.png            .img/smallworldnetworkrewardAmount=7.png
+```
+
+> **Note**: The `'-r'` on line 85 of `goodGame.m` controls line color and style. To produce curves with different colors for comparison, manually change this string (e.g., `'-b'` for blue, `'-g'` for green, `'--r'` for red dashed), combined with `hold on` (line 89) to overlay multiple curves on the same figure.
+
 ## Install
 
 This project uses [Matlab](https://www.mathworks.com/products/matlab.html) [Git](https://git-scm.com/). Go check them out if you don't have them locally installed.

@@ -107,6 +107,64 @@ individualRewards:  个体所获得的全部奖励
     
 </table>
 
+## 生成结果图
+
+项目中 `.img/` 目录下的 12 张演化曲线图，通过以下步骤逐张生成：
+
+### 1. 生成网络拓扑
+
+在 MATLAB 中运行对应的网络脚本，在工作区创建 `Node_neighbor` 邻接矩阵：
+
+| 脚本 | 网络类型 |
+|------|----------|
+| `scaleFreeNetwork.m` | BA 无标度网络 |
+| `randomNetwork.m` | 随机网络 |
+| `reluNetwork.m` | 规则网格网络 |
+| `smallWorldNetwork.m` | 小世界网络 |
+
+### 2. 运行博弈模拟并保存图片
+
+`goodGame.m` 使用工作区中的 `Node_neighbor` 进行蒙特卡洛模拟，绘制合作比例随时间的演化曲线。
+
+**默认参数图**（表格第一列）：
+
+```matlab
+% 以 BA 无标度网络为例
+run('scaleFreeNetwork.m')
+% goodGame.m 中参数保持默认：penaltyAmount=1, rewardAmount=7
+run('goodGame.m')
+saveas(gcf, '.img/BAnetwork.png')
+```
+
+**惩罚影响图**（表格第二列）—— 修改 `goodGame.m` 第 4 行的 `penaltyAmount` 值：
+
+```matlab
+% penaltyAmount = 3  （将 goodGame.m 第 4 行改为 penaltyAmount=3）
+run('goodGame.m')
+saveas(gcf, '.img/BAnetworkpenaltyAmount.png')
+```
+
+**奖励影响图**（表格第三列）—— 修改 `goodGame.m` 第 5 行的 `rewardAmount` 值：
+
+```matlab
+% rewardAmount = 12  （将 goodGame.m 第 5 行改为 rewardAmount=12）
+run('goodGame.m')
+saveas(gcf, '.img/BAnetworkrewardAmount.png')
+```
+
+### 3. 重复四种网络
+
+对每种网络重复步骤 1-2，共生成 12 张图：
+
+```
+.img/BAnetwork.png                    .img/BAnetworkpenaltyAmount.png                    .img/BAnetworkrewardAmount.png
+.img/randomnetwork.png                .img/randomnetworkpenaltyAmount.png                .img/randomnetworkrewardAmount.png
+.img/rulenetwork.png                  .img/rulenetworkpenaltyAmount.png                  .img/rulenetworkrewardAmount.png
+.img/smallworldnetwork.png            .img/smallworldnetworkpenaltyAmount.png            .img/smallworldnetworkrewardAmount=7.png
+```
+
+> **注意**：`goodGame.m` 第 85 行的 `'-r'` 控制线条颜色与样式。如需不同颜色对比，手动修改该字符串（如 `'-b'` 蓝色、`'-g'` 绿色、`'--r'` 红色虚线），再配合 `hold on`（第 89 行）在同一图上叠加多条曲线。
+
 ## 安装
 
 需要使用 [Matlab](https://www.mathworks.com/products/matlab.html) [Git](https://git-scm.com/). 请检查它们是否被正确安装.
